@@ -1,0 +1,62 @@
+
+body {
+			background:#2E5D90;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+}
+
+.login-form {
+	position: absolute;
+	top: 35%; /* Buscamos el centro horizontal (relativo) del navegador */
+	left: 50%; /* Buscamos el centro vertical (relativo) del navegador */
+	width: 410px; /* Definimos el ancho del objeto a centrar */
+	height: 50%; /* Definimos el alto del objeto a centrar */
+	transform: translate(-50%,-50%);
+	font: 15px/1.6em Lato, serif;
+}
+
+
+	 .panel-heading {
+		color: black;
+		background: #white;
+		line-height: 2.4em;
+		font-weight: bold;
+		padding-left: 26px;
+		font: 20px Lato, serif;
+	}
+
+	.imagen{
+		margin: auto;
+		border: 2px solid red;
+		vertical-align:middle;
+
+	}
+
+	.login-form .panel .panel-body {
+		background: #f2f2f2;
+
+
+	}
+
+	form[role=login] {
+		color: #a5a5a5;
+	}
+		form[role=login] label {
+			font-weight: normal;
+		}
+		form[role=login] input,
+		form[role=login] button {
+			font-size: 14px;
+		}
+		form[role=login] input {
+			margin: .5em 0;
+		}
+		form[role=login] button {
+			font-weight: bold;
+		}
+
+		ul li{
+			 list-style:none;
+		}
