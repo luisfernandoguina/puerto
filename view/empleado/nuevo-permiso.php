@@ -41,18 +41,39 @@
                                             <input type="text" readonly="readonly" class="form-control"value="<?php echo isset($empleado) ? $empleado->nombre.' '.$empleado->apellido : '' ?>">
                                         </div>
                                     </div>
+                                    <?php
+                                    $cargo="";
+                                    $departamneto="";
+                                    $pdo=Conexion::conectar();
+                                    $stmt_empleado = $pdo->prepare("select empleado.estado,empleado.nombre, empleado.apellido, cargo.nombre as cargo, departamento.nombre as departamento 
+                                    from empleado left join cargo on empleado.id_cargo = cargo.id 
+                                    left join departamento on empleado.id_departamento = departamento.id
+                                    where empleado.id='".$empleado->id."'");
+                                    $stmt_empleado->execute();
+
+                                    $rows_affected = $stmt_empleado->rowCount();
+                                             while ($row = $stmt_empleado->fetch()) {
+
+                                                                if ($row['estado']==1){
+                                                                $cargo = $row['cargo'];
+                                                                $departamento= $row['departamento'];
+
+                                                                }  
+                                             }
+                                     
+?>
                                     
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">Cargo</label>
                                         <div class="col-sm-6">
-                                            <input type="text"  class="form-control"value="">
+                                            <input type="text"  class="form-control" value="<?php echo isset($empleado) ? $cargo : '' ?>" readonly="readonly">
                                         </div>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">Departamento</label>
                                         <div class="col-sm-6">
-                                            <input type="text"  class="form-control"value="">
+                                            <input type="text"  class="form-control" value="<?php echo isset($empleado) ? $departamento : '' ?>" readonly="readonly">
                                         </div>
                                     </div>
                                     
@@ -118,9 +139,17 @@
     <script type="text/javascript">
     $(function () {
     
-        $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker6').datetimepicker({
+            format: 'DD/MM/YYYY HH:mm',
+            locale:'es',
+            
+        });
         $('#datetimepicker7').datetimepicker({
-            useCurrent: false //Important! See issue #1075
+            
+            useCurrent: false,
+          
+            format: 'DD/MM/YYYY HH:mm',
+            locale:'es',
         });
         $("#datetimepicker6").on("dp.change", function (e) {
             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
